@@ -26,9 +26,17 @@ namespace Full_GRASP_And_SOLID
             recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
             recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
 
-            AllInOnePrinter printer = new AllInOnePrinter();
-            printer.PrintRecipe(recipe, Destination.Console);
-            printer.PrintRecipe(recipe, Destination.File);
+            //Se crea una variable del tipo IPrinter para luego asignarle  
+            // una instancia de ConsolePrinter y otra de FilePrinter.
+            //La Operacion PrintTicket es Polimorfica.
+            //Cada Clase del Tipo IPrinter tiene la responsabilidad de Imprimir de formas diferentes
+             
+            IPrinter printer;
+            printer = new ConsolePrinter();
+            printer.PrintTicket(recipe);
+
+            printer = new FilePrinter();
+            printer.PrintTicket(recipe);
         }
 
         private static void PopulateCatalogs()
